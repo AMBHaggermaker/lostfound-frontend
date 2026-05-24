@@ -65,8 +65,12 @@ export default function Nav() {
               <button className="btn btn-primary btn-full" disabled={busy}>
                 {busy ? '…' : 'Sign in'}
               </button>
-              <p style={{ fontSize: '.78rem', color: 'var(--muted)', textAlign: 'center' }}>
-                Use your Mycelium credentials. No separate account needed.
+              <p style={{ fontSize: '.78rem', color: 'var(--muted)', textAlign: 'center', marginTop: '.25rem' }}>
+                Use your Mycelium account to sign in. Don't have one?{' '}
+                <a href="https://mycelium.unprecedentedtimes.org" target="_blank" rel="noreferrer"
+                   style={{ color: 'var(--accent)' }}>
+                  Register at mycelium.unprecedentedtimes.org
+                </a>
               </p>
             </form>
           </div>
