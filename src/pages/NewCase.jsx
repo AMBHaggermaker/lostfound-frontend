@@ -124,17 +124,19 @@ export default function NewCase() {
 
           <div className="form-group">
             <label className="form-label">Photos * (required, up to 10)</label>
-            <div className={`photo-upload-zone${photos.length >= 10 ? ' disabled' : ''}`}
-              onClick={() => photos.length < 10 && photoRef.current?.click()}>
+            <label
+              className={`photo-upload-zone${photos.length >= 10 ? ' disabled' : ''}`}
+              htmlFor={photos.length >= 10 ? undefined : 'lf-photo-input'}
+            >
               {photos.length === 0
-                ? 'Click to add photos — at least one required'
+                ? 'Tap or click to add photos — at least one required'
                 : photos.length >= 10
                   ? '10 / 10 photos — limit reached'
-                  : `${photos.length} / 10 photos — click to add more`
+                  : `${photos.length} / 10 photos — tap to add more`
               }
-            </div>
-            <input ref={photoRef} type="file" multiple
-              accept="image/jpeg,image/png,image/webp,image/gif"
+            </label>
+            <input id="lf-photo-input" ref={photoRef} type="file" multiple
+              accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
               style={{ display: 'none' }} onChange={handlePhotos} />
             {previews.length > 0 && (
               <div className="photo-preview-grid">
