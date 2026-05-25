@@ -202,7 +202,8 @@ img, video { max-width: 100%; }
   color: var(--muted); font-size: .875rem;
   transition: border-color .15s, color .15s;
 }
-.photo-upload-zone:hover { border-color: var(--red); color: var(--red); }
+.photo-upload-zone:hover:not(.disabled) { border-color: var(--red); color: var(--red); }
+.photo-upload-zone.disabled { cursor: default; opacity: .5; }
 .photo-preview-grid {
   display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem;
 }

@@ -124,10 +124,13 @@ export default function NewCase() {
 
           <div className="form-group">
             <label className="form-label">Photos * (required, up to 10)</label>
-            <div className="photo-upload-zone" onClick={() => photoRef.current?.click()}>
+            <div className={`photo-upload-zone${photos.length >= 10 ? ' disabled' : ''}`}
+              onClick={() => photos.length < 10 && photoRef.current?.click()}>
               {photos.length === 0
                 ? 'Click to add photos — at least one required'
-                : `${photos.length} photo${photos.length !== 1 ? 's' : ''} selected — click to add more`
+                : photos.length >= 10
+                  ? '10 / 10 photos — limit reached'
+                  : `${photos.length} / 10 photos — click to add more`
               }
             </div>
             <input ref={photoRef} type="file" multiple
