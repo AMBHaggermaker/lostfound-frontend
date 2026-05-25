@@ -30,8 +30,9 @@ export default function NewCase() {
   function set(k, v) { setForm(f => ({ ...f, [k]: v })); }
 
   function handlePhotos(e) {
-    setPhotos(prev => [...prev, ...Array.from(e.target.files)].slice(0, 10));
+    const files = Array.from(e.target.files);
     e.target.value = '';
+    setPhotos(prev => [...prev, ...files].slice(0, 10));
   }
 
   async function submit(e) {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const BASE = 'https://lostfound.unprecedentedtimes.org';
@@ -12,12 +13,15 @@ function hoursAgo(date) {
 
 export default function CaseCard({ c }) {
   const navigate = useNavigate();
+  const [imgErr, setImgErr] = useState(false);
   const primary = c.photos?.find(p => p.is_primary) || c.photos?.[0];
+  const showPhoto = primary && !imgErr;
 
   return (
     <div className="card case-card" onClick={() => navigate(`/cases/${c.id}`)}>
-      {primary
-        ? <img className="case-photo" src={`${BASE}${primary.url}`} alt={c.title} loading="lazy" />
+      {showPhoto
+        ? <img className="case-photo" src={`${BASE}${primary.url}`} alt={c.title}
+            loading="lazy" onError={() => setImgErr(true)} />
         : <div className="case-photo-placeholder">{SUBJECT_ICONS[c.subject_type] || '?'}</div>
       }
       <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
