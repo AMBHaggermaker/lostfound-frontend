@@ -42,6 +42,7 @@ function multipart(method, path, formData, token) {
 export default {
   // Cases
   getCases:    (params, token)         => get(`/cases${qs(params)}`, token),
+  getMapCases: (params)               => get(`/cases/map${qs(params)}`),
   getCase:     (id, token)             => get(`/cases/${id}`, token),
   createCase:  (formData, token)       => multipart('POST', '/cases', formData, token),
   updateStatus:(id, status, token)     => patch(`/cases/${id}/status`, { status }, token),
