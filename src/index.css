@@ -360,3 +360,26 @@ img, video { max-width: 100%; }
   .form-row { grid-template-columns: 1fr; }
   .case-grid { grid-template-columns: 1fr; }
 }
+
+/* ── ImageCropUploader ────────────────────────────────── */
+.img-crop-uploader { display: flex; flex-direction: column; gap: .4rem; }
+.img-crop-hint { font-size: .75rem; color: #888; margin: 0; }
+.img-crop-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 6px; border: 2px solid #ddd; flex-shrink: 0; }
+.img-crop-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.72);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999; padding: 1rem;
+}
+.img-crop-dialog {
+  background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,.28);
+  display: flex; flex-direction: column; max-width: 90vw; max-height: 92vh; overflow: hidden;
+}
+.img-crop-dialog-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .75rem 1rem; border-bottom: 1px solid #eee;
+  font-weight: 700; font-size: .95rem; flex-shrink: 0;
+}
+.img-crop-close { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #999; padding: 0 .2rem; }
+.img-crop-dialog-body { overflow: auto; padding: 1rem; display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+.img-crop-size-hint { font-size: .72rem; color: #999; }
+.img-crop-dialog-footer { padding: .75rem 1rem; border-top: 1px solid #eee; display: flex; gap: .5rem; flex-shrink: 0; }

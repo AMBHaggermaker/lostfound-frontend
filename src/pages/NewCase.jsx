@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth';
 import api from '../api';
+import ImageCropUploader from '../components/ImageCropUploader';
 
 export default function NewCase() {
   const { user, token } = useAuth();
@@ -12,27 +13,20 @@ export default function NewCase() {
     last_seen_location: '', last_seen_at: '', contact_info: '', tags: '',
   });
   const [photos,   setPhotos]   = useState([]);
-  const [previews, setPreviews] = useState([]);
   const [err,  setErr]  = useState(null);
   const [busy, setBusy] = useState(false);
-  const photoRef = useRef(null);
 
   useEffect(() => {
     if (!user) navigate('/');
   }, [user]);
 
-  useEffect(() => {
-    const urls = photos.map(f => URL.createObjectURL(f));
-    setPreviews(urls);
-    return () => urls.forEach(u => URL.revokeObjectURL(u));
-  }, [photos]);
-
   function set(k, v) { setForm(f => ({ ...f, [k]: v })); }
 
-  function handlePhotos(e) {
-    const files = Array.from(e.target.files);
-    e.target.value = '';
-    setPhotos(prev => [...prev, ...files].slice(0, 10));
+  function addPhoto(blob, filename) {
+    setPhotos(prev => {
+      if (prev.length >= 10) return prev;
+      return [...prev, new File([blob], filename, { type: 'image/jpeg' })];
+    });
   }
 
   async function submit(e) {
@@ -125,25 +119,22 @@ export default function NewCase() {
 
           <div className="form-group">
             <label className="form-label">Photos * (required, up to 10)</label>
-            <label
-              className={`photo-upload-zone${photos.length >= 10 ? ' disabled' : ''}`}
-              htmlFor={photos.length >= 10 ? undefined : 'lf-photo-input'}
-            >
-              {photos.length === 0
-                ? 'Tap or click to add photos — at least one required'
-                : photos.length >= 10
-                  ? '10 / 10 photos — limit reached'
-                  : `${photos.length} / 10 photos — tap to add more`
-              }
-            </label>
-            <input id="lf-photo-input" ref={photoRef} type="file" multiple
-              accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
-              style={{ display: 'none' }} onChange={handlePhotos} />
-            {previews.length > 0 && (
-              <div className="photo-preview-grid">
-                {previews.map((url, i) => (
+            {photos.length < 10 && (
+              <ImageCropUploader
+                aspect={4 / 3}
+                targetWidth={1200}
+                targetHeight={900}
+                label={photos.length === 0 ? 'Add Photo (required)' : `Add More (${photos.length}/10)`}
+                hint="1200×900px · 4:3"
+                onFile={addPhoto}
+                btnClassName="btn btn-outline btn-sm"
+              />
+            )}
+            {photos.length > 0 && (
+              <div className="photo-preview-grid" style={{ marginTop: '.5rem' }}>
+                {photos.map((f, i) => (
                   <div key={i} className="photo-preview-item">
-                    <img src={url} alt="" />
+                    <img src={URL.createObjectURL(f)} alt="" />
                     <button type="button" className="photo-preview-remove"
                       onClick={() => setPhotos(prev => prev.filter((_, j) => j !== i))}>✕</button>
                   </div>
