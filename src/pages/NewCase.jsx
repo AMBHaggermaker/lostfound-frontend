@@ -125,7 +125,7 @@ export default function NewCase() {
                 targetWidth={1200}
                 targetHeight={900}
                 label={photos.length === 0 ? 'Add Photo (required)' : `Add More (${photos.length}/10)`}
-                hint="1200×900px · 4:3"
+                hint="Any size, min 800px wide, up to 10 photos"
                 onFile={addPhoto}
                 btnClassName="btn btn-outline btn-sm"
               />
