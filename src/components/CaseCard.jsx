@@ -18,7 +18,7 @@ export default function CaseCard({ c }) {
   const showPhoto = primary && !imgErr;
 
   return (
-    <div className="card case-card" onClick={() => navigate(`/cases/${c.id}`)}>
+    <div className={`card case-card case-card--${c.status}${c.urgent ? ' case-card--urgent' : ''}`} onClick={() => navigate(`/cases/${c.id}`)}>
       {showPhoto
         ? <img className="case-photo" src={`${BASE}${primary.url}`} alt={c.title}
             loading="lazy" onError={() => setImgErr(true)} />

@@ -1,0 +1,11 @@
+Update the Lost and Found frontend to match the Mycelium cosmic theme but with red as the primary accent color instead of green. This makes Lost and Found feel like a sibling platform — same family, different emotional register. Red communicates urgency and search without a word.
+Color palette changes: Primary accent #ff3366 neon red replacing all green accents. Button primary — neon red with red glow box-shadow 0 0 12px rgba(255 51 102 0.4). Button hover — intensified red glow. Card borders — subtle red glow 0 0 8px rgba(255 51 102 0.15). Active states and highlights — red instead of green. Link colors — red. Badge colors — red. Online indicators stay green since those are universal. Urgency indicators and critical case markers pulse red more intensely than normal cards.
+Background: Same deep space navy #0d0d1a base with subtle star field CSS texture matching Mycelium. Same card surface dark earth #1a1a2e with purple tint. Same backdrop blur on navigation.
+Typography: Import Cinzel Decorative from Google Fonts for the Lost and Found logo and page headers. Apply the same mystical heading style as Mycelium. Body text same soft warm white #f0ece4.
+Navigation: Dark space background matching Mycelium nav. Lost and Found logo in Cinzel Decorative with red glow text-shadow. Nav links with red glow on hover and active state.
+Case cards: Red tinted borders instead of green. Active searching cases have a pulsing red glow around the card — more intense than normal. Resolved cases have a dimmed red border. Critical urgent cases have a bright pulsing red glow.
+Map: Already using Positron tiles — keep as is.
+Case status badges: Active — bright red glow. Found — green (positive resolution, keep green). Cold — gray. Urgent — pulsing red with stronger glow.
+The overall feeling: Same cosmic bioluminescent aesthetic as Mycelium but where Mycelium feels like a living forest, Lost and Found should feel like an urgent beacon — a red light pulsing in the dark saying someone needs to be found.
+Also update the Lost and Found PWA manifest theme color from whatever it currently is to #ff3366 so the browser chrome on mobile shows red when the app is open.
+Then rebuild and redeploy the lostfound frontend and push to GitHub.

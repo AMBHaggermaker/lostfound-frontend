@@ -26,7 +26,10 @@ export default function Nav() {
     <>
       <nav className="nav">
         <div className="nav-inner">
-          <NavLink to="/" className="nav-brand">⚠ Lost &amp; Found</NavLink>
+          <NavLink to="/" className="nav-brand">
+            <span className="nav-brand-icon" />
+            Lost &amp; Found
+          </NavLink>
           <div className="nav-links">
             <NavLink to="/" end className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>Cases</NavLink>
             <a href="https://mycelium.unprecedentedtimes.org" className="nav-link" target="_blank" rel="noreferrer">Mycelium</a>
