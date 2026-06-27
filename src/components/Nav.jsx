@@ -32,6 +32,7 @@ export default function Nav() {
           </NavLink>
           <div className="nav-links">
             <NavLink to="/" end className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>Cases</NavLink>
+            <NavLink to="/map" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>🗺 Map</NavLink>
             <a href="https://mycelium.unprecedentedtimes.org" className="nav-link" target="_blank" rel="noreferrer">Mycelium</a>
           </div>
           {user ? (

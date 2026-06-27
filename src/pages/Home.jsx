@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../auth';
 import api from '../api';
 import CaseCard from '../components/CaseCard';
@@ -79,6 +79,9 @@ export default function Home() {
                 🗺 Map
               </button>
             </div>
+            <Link to="/map" className="btn btn-outline btn-sm" title="Open the full missing persons map">
+              Full Map →
+            </Link>
           </div>
         </div>
 

@@ -43,6 +43,7 @@ export default {
   // Cases
   getCases:    (params, token)         => get(`/cases${qs(params)}`, token),
   getMapCases: (params)               => get(`/cases/map${qs(params)}`),
+  getClusters: ()                     => get('/cases/clusters'),
   getCase:     (id, token)             => get(`/cases/${id}`, token),
   createCase:  (formData, token)       => multipart('POST', '/cases', formData, token),
   updateStatus:(id, status, token)     => patch(`/cases/${id}/status`, { status }, token),
@@ -50,9 +51,11 @@ export default {
   addPhotos:   (id, formData, token)   => multipart('POST', `/cases/${id}/photos`, formData, token),
 
   // Tips
+  getTips:     (caseId, token)           => get(`/cases/${caseId}/tips`, token),
   addTip:      (caseId, formData, token) => multipart('POST', `/cases/${caseId}/tips`, formData, token),
   deleteTip:   (caseId, tipId, token)    => del(`/cases/${caseId}/tips/${tipId}`, token),
   verifyTip:   (caseId, tipId, token)    => patch(`/cases/${caseId}/tips/${tipId}/verify`, {}, token),
+  pinTip:      (caseId, tipId, token)    => patch(`/cases/${caseId}/tips/${tipId}/pin`, {}, token),
 
   // AI briefing
   getBriefing: (caseId, token)         => get(`/cases/${caseId}/briefing`, token),
